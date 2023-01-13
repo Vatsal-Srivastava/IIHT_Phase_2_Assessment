@@ -1,0 +1,30 @@
+<div class="form-sty">
+  <p class="mat-headline-4 heading">Login</p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter First Name</mat-label>
+      <input matInput placeholder="First Name" />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter Last Name</mat-label>
+      <input matInput placeholder="Last Name" />
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Store Name</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let store of stores" [value]="store">
+          {{ store }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <button mat-raised-button>Submit</button>
+  </p>
+</div>
