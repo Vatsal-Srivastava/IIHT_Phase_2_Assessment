@@ -28,20 +28,37 @@ export class UserService {
     );
   }
 
-  validateUser(name: string, password: string, uList: User[]) {
+  validateUser(
+    name: string,
+    password: string,
+    uList: User[]
+  ): Observable<User> {
+    // console.log('Hello');
+
     let userL = uList.filter((ele) => {
+      // console.log(ele.userName + ' ' + name);
+
       return ele.userName === name;
     });
 
     let userObj = userL[0];
 
-    if (userObj && password === userObj['password']) {
-      console.log(userObj);
-    } else {
-      console.log('Not Logged In');
-    }
+    // console.log(userL);
 
-    return userObj;
+    if (userObj && password === userObj['password']) {
+      console.log('User Logged in');
+
+      return new Observable((obj) => {
+        obj.next(userObj);
+        obj.complete();
+      });
+    } else {
+      console.log('Invalid User');
+
+      return new Observable((obj) => {
+        obj.error('User Not Validated');
+      });
+    }
   }
 
   private errorHandler(err: any) {

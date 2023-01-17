@@ -12,6 +12,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ProductModule } from '../product/product.module';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
     ContactUsComponent,
   ],
   imports: [
+    ProductModule,
     CommonModule,
     MaterialRoutingModule,
     MatToolbarModule,
@@ -30,6 +33,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatMenuModule,
   ],
   exports: [NavbarComponent],
 })

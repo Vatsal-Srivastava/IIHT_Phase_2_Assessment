@@ -8,10 +8,10 @@ import {
   validateUserFailure,
   validateUserSuccess,
 } from './user.actions';
-
 import { UserState } from './user.state';
 
 export const initialState: UserState = {
+  checkUser: {},
   currUser: null,
   users: [],
   error: '',
@@ -36,8 +36,9 @@ export const userReducer = createReducer(
     error: error,
     status: 'error',
   })),
-  on(validateUser, (state) => ({
+  on(validateUser, (state, { name, password }) => ({
     ...state,
+    checkUser: { name, password },
     status: 'pending',
   })),
   on(validateUserSuccess, (state, { isAuthenticated, currUser }) => ({
@@ -50,5 +51,6 @@ export const userReducer = createReducer(
   on(validateUserFailure, (state, { error }) => ({
     ...state,
     error: error,
+    status: 'error',
   }))
 );

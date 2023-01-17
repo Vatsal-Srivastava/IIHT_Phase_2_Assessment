@@ -9,20 +9,35 @@ import { ProductModule } from './product/product.module';
 import { CartModule } from './cart/cart.module';
 import { MaterialModule } from './material/material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { UserEffects } from './state/users/user.effects';
+import { userReducer } from './state/users/user.reducer';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDbMartService } from './inmemorydbmartservice';
+import { ProductEffects } from './state/products/product.effects';
+import { productReducer } from './state/products/product.reducer';
 
 @NgModule({
   declarations: [AppComponent],
   providers: [],
   bootstrap: [AppComponent],
   imports: [
-    BrowserModule,
-    MaterialModule,
-    CartModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDbMartService),
+    HttpClientModule,
     ProductModule,
-    UserModule, //Shifting user Module on top to intercept module path
+    UserModule,
+    CartModule,
+    MaterialModule,
+    BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('users', userReducer),
+    StoreModule.forFeature('products', productReducer),
+    EffectsModule.forRoot([UserEffects, ProductEffects]),
   ],
 })
 export class AppModule {}

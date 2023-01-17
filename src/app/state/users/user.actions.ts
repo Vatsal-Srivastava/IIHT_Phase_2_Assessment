@@ -13,11 +13,14 @@ export const loadUsersFailure = createAction(
   props<{ error: string }>()
 );
 
-export const validateUser = createAction('[User] Check Validity');
+export const validateUser = createAction(
+  '[User] Check Validity',
+  props<{ name: string; password: string }>()
+);
 
 export const validateUserSuccess = createAction(
   '[User] Valid User',
-  props<{ isAuthenticated: boolean, currUser:User }>()
+  props<{ isAuthenticated: boolean; currUser: User }>()
 );
 
 export const validateUserFailure = createAction(

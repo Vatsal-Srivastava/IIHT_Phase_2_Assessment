@@ -1,1 +1,5 @@
-<p>product-list works!</p>
+<div class="container">
+  <p *ngFor="let pro of products | async">
+    {{ pro.name }}
+  </p>
+</div>

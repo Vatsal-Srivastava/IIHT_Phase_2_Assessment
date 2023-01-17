@@ -6,6 +6,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { userReducer } from '../state/users/user.reducer';
+import { UserEffects } from '../state/users/user.effects';
+
 
 @NgModule({
   declarations: [LoginComponent],
@@ -16,6 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    StoreModule.forFeature('users', userReducer),
+    EffectsModule.forFeature([UserEffects])
   ],
   exports: [LoginComponent],
 })
