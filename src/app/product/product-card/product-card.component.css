@@ -10,3 +10,19 @@ img {
 .card-sty {
   padding: 70%;
 }
+
+.btn-div {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.heading-sty {
+  display: flex;
+  gap: 70px;
+  /* justify-content: space-between; */
+}
+
+.price {
+  color: green;
+}

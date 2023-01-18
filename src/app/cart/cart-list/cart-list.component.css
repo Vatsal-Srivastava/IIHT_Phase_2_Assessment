@@ -1,0 +1,29 @@
+img.animated-gif {
+  width: 120px !important;
+  height: auto !important;
+}
+
+.btn-sty {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.divver {
+  display: flex;
+  align-items: center;
+}
+
+.quan-div {
+  /* border: 1px solid black; */
+  height: 35px;
+  width: 40px;
+}
+.empty-cart {
+  display: flex;
+  flex-grow: 1 1;
+  justify-content: center;
+  align-items: center;
+  /* width: 70%; */
+  text-align: center;
+}

@@ -1,47 +1,43 @@
 <p>
   <mat-toolbar color="primary">
-    <button
-      mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with menu icon"
-    >
-      <mat-icon>menu</mat-icon>
-    </button>
     <span style="cursor: pointer" [routerLink]="['home']">Insta Smart</span>
     <span class="example-spacer"></span>
 
-    <button mat-button [matMenuTriggerFor]="menu">
-      <span> Category</span>
-      <mat-icon>keyboard_arrow_down</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <p *ngFor="let cat of category">
-        <button mat-menu-item>{{ cat }}</button>
-      </p>
-    </mat-menu>
+    <div class="btn-div">
+      <div *ngIf="isAdmin">
+        <button mat-raised-button color="primary" (click)="openDialog()">
+          Add New Product<mat-icon>library_add</mat-icon>
+        </button>
+      </div>
 
-    <button
-      mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-    >
-      <mat-icon>cart</mat-icon>
-    </button>
+      <button mat-flat-button color="primary" [routerLink]="['about-us']">
+        About Us<mat-icon>info</mat-icon>
+      </button>
 
-    <button mat-flat-button color="primary" [routerLink]="['about-us']">
-      About Us<mat-icon>info</mat-icon>
-    </button>
+      <button mat-flat-button color="primary" [routerLink]="['contact-us']">
+        Contact Us<mat-icon>call</mat-icon>
+      </button>
 
-    <button mat-flat-button color="primary" [routerLink]="['contact-us']">
-      Contact Us<mat-icon>call</mat-icon>
-    </button>
+      <button mat-flat-button color="primary" [routerLink]="['cart']">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
 
-    <button mat-flat-button color="primary" [routerLink]="['about-us']">
-      <mat-icon>shopping_cart</mat-icon>
-    </button>
+      <button mat-flat-button *ngIf="CurrUser !== null" color="primary">
+        Welcome, {{ CurrUser.userName }}
+      </button>
 
-    <button mat-flat-button color="primary" [routerLink]="['login']">
-      Login<mat-icon>login</mat-icon>
-    </button>
+      <button
+        *ngIf="!isAuth"
+        mat-flat-button
+        color="primary"
+        [routerLink]="['login']"
+      >
+        Login<mat-icon>login</mat-icon>
+      </button>
+
+      <button *ngIf="isAuth" mat-flat-button color="primary" (click)="logout()">
+        Logout<mat-icon>logout</mat-icon>
+      </button>
+    </div>
   </mat-toolbar>
 </p>

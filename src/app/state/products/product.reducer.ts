@@ -47,6 +47,7 @@ export const productReducer = createReducer(
   })),
   on(createProductSuccess, (state, { product }) => ({
     ...state,
+    products: [...state.products, product],
     currProduct: product,
     error: '',
     status: 'success',
@@ -67,6 +68,17 @@ export const productReducer = createReducer(
     error: '',
     status: 'success',
   })),
+  // on(updateProductSuccess, (state, action): ProductState => {
+  //   const updatedProducts = state.products.map((item) =>
+  //     action.product.id === item.id ? action.product : item
+  //   );
+  //   return {
+  //     ...state,
+  //     products: updatedProducts,
+  //     currProduct: action.product,
+  //     error: '',
+  //   };
+  // }),
   on(updateProductFailure, (state, { error }) => ({
     ...state,
     error: error,
@@ -79,6 +91,7 @@ export const productReducer = createReducer(
   })),
   on(deleteProductSuccess, (state, { pid }) => ({
     ...state,
+    products: state.products.filter((ele) => ele.id !== pid),
     error: '',
     status: 'success',
   })),

@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Product } from '../product/product';
 
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -37,14 +39,13 @@ export class ProductService {
   }
 
   updateProduct(pro: Product): Observable<Product> {
+    // console.log(pro.id);
+
     const headers = new HttpHeaders({ 'Content-type': 'application/json' });
-    return this.http.put<Product>(this.url, pro, { headers }).pipe(
-      tap((data) => console.log(data)),
-      catchError(this.errorHandler)
-    );
+    return this.http.put<Product>(`${this.url}/${pro.id}`, pro, { headers });
   }
 
-  public deleteProduct(proId: number) {
+  deleteProduct(proId: number) {
     return this.http.delete(`${this.url}/${proId}`);
   }
 

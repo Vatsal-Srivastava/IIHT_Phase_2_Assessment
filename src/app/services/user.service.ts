@@ -42,12 +42,9 @@ export class UserService {
     });
 
     let userObj = userL[0];
-
-    // console.log(userL);
-
     if (userObj && password === userObj['password']) {
       console.log('User Logged in');
-
+      sessionStorage.setItem('curr', JSON.stringify(userObj));
       return new Observable((obj) => {
         obj.next(userObj);
         obj.complete();

@@ -8,8 +8,11 @@ import {
 } from 'src/app/state/users/user.selectors';
 import { UserState } from 'src/app/state/users/user.state';
 import { User } from '../user';
+import { Router } from '@angular/router';
 
 import { loadUsers, validateUser } from '../../state/users/user.actions';
+import { UserService } from 'src/app/services/user.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -17,20 +20,42 @@ import { loadUsers, validateUser } from '../../state/users/user.actions';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private store: Store<UserState>) {}
+  loginForm!: FormGroup;
+  constructor(
+    private store: Store<UserState>,
+    private router: Router,
+    private userService: UserService,
+    private fb: FormBuilder
+  ) {}
 
   users: Observable<User[]> = this.store.select(getUsers);
 
   ngOnInit(): void {
     this.store.dispatch(loadUsers());
-    // this.users.subscribe((ele) => {
-    //   console.log(ele);
-    // });
+    this.loginForm = this.fb.group({
+      name: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
+  }
+
+  get name() {
+    return this.loginForm.get('name')?.value;
+  }
+
+  get password() {
+    return this.loginForm.get('password')?.value;
   }
 
   login() {
-    this.store.dispatch(validateUser({ name: 'Anish', password: 'vatsal' }));
-    this.store.select(getAuth).subscribe((val) => console.log(val));
+
+    this.store.dispatch(validateUser({ name: this.name, password: this.password }));
+    // this.store.select(getAuth).subscribe((val) => console.log(val));
+    this.store.select(getAuth).subscribe((val) => {
+      if (val) {
+        // console.log(this.userService.redirectUrl);
+        this.router.navigateByUrl(this.userService.redirectUrl);
+      }
+    });
   }
   hide = true;
 }

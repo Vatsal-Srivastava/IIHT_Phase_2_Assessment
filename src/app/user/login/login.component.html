@@ -1,28 +1,41 @@
-<div class="form-sty">
-  <p class="mat-headline-4 heading">Login</p>
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>Enter Username</mat-label>
-      <input matInput placeholder="username" />
-      <mat-icon matSuffix>person</mat-icon>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>Enter your password</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" />
+<form [formGroup]="loginForm">
+  <div class="form-sty">
+    <p class="mat-headline-4 heading">Login</p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Username</mat-label>
+        <input formControlName="name" matInput placeholder="username" />
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your password</mat-label>
+        <input
+          formControlName="password"
+          matInput
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </p>
+    <p>
       <button
-        mat-icon-button
-        matSuffix
-        (click)="hide = !hide"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide"
+        mat-raised-button
+        type="button"
+        [disabled]="!loginForm.valid"
+        (click)="login()"
       >
-        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        Submit
       </button>
-    </mat-form-field>
-  </p>
-  <p>
-    <button mat-raised-button (click)="login()">Submit</button>
-  </p>
-</div>
+    </p>
+  </div>
+</form>

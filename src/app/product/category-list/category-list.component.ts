@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Category } from '../product';
 import { ProductState } from 'src/app/state/products/product.state';
 import { Store } from '@ngrx/store';
@@ -14,6 +20,8 @@ import { getProducts } from 'src/app/state/products/product.selectors';
 })
 export class CategoryListComponent implements OnInit, OnDestroy {
   constructor(private store: Store<ProductState>) {}
+
+  index = 0;
   subscription!: Subscription;
   filPro!: Product[];
   ele: string = '';
@@ -24,7 +32,9 @@ export class CategoryListComponent implements OnInit, OnDestroy {
       .select(getProducts)
       .subscribe((pro: Product[]) => {
         this.products = pro;
-        this.filPro = this.products;
+        if (this.index == 0) {
+          this.filPro = this.products;
+        }
       });
     // console.log(this.products);
   }
@@ -52,8 +62,17 @@ export class CategoryListComponent implements OnInit, OnDestroy {
   //   });
   // }
 
+  changeTab(event: number) {
+    console.log(event);
+    setTimeout(() => {
+      this.index = event;
+    }, 500);
+  }
+
   tabChanged(event: any) {
+    this.filPro = this.products;
     const filterText = event.tab.textLabel;
+
     if (event.index != 0) {
       this.filPro = this.products.filter((pro) => {
         return pro.category.includes(filterText, 0);

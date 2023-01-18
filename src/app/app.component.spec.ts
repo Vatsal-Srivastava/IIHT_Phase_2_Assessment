@@ -1,16 +1,18 @@
 import { TestBed } from '@angular/core/testing';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { AppComponent } from './app.component';
+import { MaterialModule } from './material/material.module';
+import { NavbarComponent } from './material/navbar/navbar.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [RouterTestingModule, MaterialModule, BrowserAnimationsModule, BrowserModule],
+      declarations: [AppComponent, NavbarComponent],
+      providers: [provideMockStore({})],
     }).compileComponents();
   });
 
@@ -30,6 +32,8 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('InstaSmart app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain(
+      'InstaSmart app is running!'
+    );
   });
 });

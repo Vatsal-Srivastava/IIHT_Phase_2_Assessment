@@ -1,0 +1,145 @@
+<!-- Shopping Cart -->
+<div *ngIf="cartList.length" class="shopping-cart section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <!-- Shopping Summery -->
+        <table class="table shopping-summery">
+          <thead>
+            <tr class="main-hading">
+              <th class="text-center">PRODUCT</th>
+              <th class="text-center">NAME</th>
+              <th class="text-center">UNIT PRICE</th>
+              <th class="text-center">QUANTITY</th>
+              <th class="text-center">TOTAL</th>
+              <th class="text-center"><mat-icon>delete_forever</mat-icon></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of cartList">
+              <td class="image text-center" data-title="No">
+                <img width="70px" height="70px" [src]="c.img" alt="#" />
+              </td>
+              <td class="product-des text-center" data-title="Description">
+                <p class="product-name">
+                  <a
+                    ><h3>{{ c.name }}</h3></a
+                  >
+                </p>
+              </td>
+              <td class="price text-center" data-title="Price">
+                <span
+                  ><h3>{{ c.uprice }}</h3></span
+                >
+              </td>
+              <td class="qty text-center" data-title="Qty">
+                <!-- Input Order -->
+                <div class="input-group">
+                  <div class="button minus">
+                    <button
+                      (click)="quan_Sub(c)"
+                      type="button"
+                      mat-stroked-button
+                      color="primary"
+                    >
+                      <mat-icon>remove</mat-icon>
+                    </button>
+                  </div>
+                  <div class="quan-div">
+                    <h3>{{ c.quantity }}</h3>
+                  </div>
+                  <div class="button plus">
+                    <button
+                      (click)="quan_Add(c)"
+                      type="button"
+                      mat-stroked-button
+                      color="primary"
+                    >
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </div>
+                </div>
+                <!--/ End Input Order -->
+              </td>
+              <td class="total-amount text-center" data-title="Total">
+                <span>{{ c.price }}</span>
+              </td>
+              <td class="action text-center" data-title="Remove">
+                <button (click)="deleteThis(c.id)" mat-icon-button>
+                  <mat-icon>delete_forever</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!--/ End Shopping Summery -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <!-- Total Amount -->
+        <div class="total-amount">
+          <div class="row">
+            <div class="col-lg-8 col-md-5 col-12">
+              <div class="left">
+                <div class="coupon">
+                  <!-- <form action="#" target="_blank">
+                    <input name="Coupon" placeholder="Enter Your Coupon" />
+                    <button class="btn" type="button">Apply</button>
+                  </form> -->
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-7 col-12">
+              <div class="right">
+                <ul *ngIf="cartList.length">
+                  <li>
+                    Cart Total = <span>{{ total | currency : "INR" }}</span>
+                  </li>
+                  <li>
+                    Shipping Charge = <span> {{ 100 | currency : "INR" }}</span>
+                  </li>
+                  <!-- <li>You Save<span>$20.00</span></li> -->
+                  <li class="last">
+                    You Pay = <span>{{ total + 100 | currency : "INR" }}</span>
+                  </li>
+                </ul>
+                <div class="btn-sty">
+                  <button
+                    [disabled]="!cartList.length"
+                    mat-raised-button
+                    color="primary"
+                  >
+                    Checkout
+                  </button>
+                  <button (click)="continue()" mat-raised-button color="accent">
+                    Continue shopping
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ End Total Amount -->
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ End Shopping Cart -->
+
+<div
+  style="display: flex; flex-direction: column; justify-content: center"
+  *ngIf="!cartList.length"
+>
+  <div class="empty-cart">
+    <img src="../../../assets/images/ufo.gif" />
+    <p class="mat-headline-4 heading">Your Cart is Empty!</p>
+  </div>
+  <button [disabled]="!cartList.length" mat-raised-button color="primary">
+    Checkout
+  </button>
+  <button (click)="continue()" mat-raised-button color="accent">
+    Continue shopping
+  </button>
+</div>

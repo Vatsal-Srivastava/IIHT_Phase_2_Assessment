@@ -2,7 +2,7 @@ import { User } from 'src/app/user/user';
 
 export interface UserState {
   checkUser: {};
-  currUser: User | null;
+  currUser: any;
   users: User[];
   error: string;
   isAuthenticated: boolean;

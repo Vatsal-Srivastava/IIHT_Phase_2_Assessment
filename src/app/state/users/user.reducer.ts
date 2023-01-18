@@ -12,7 +12,7 @@ import { UserState } from './user.state';
 
 export const initialState: UserState = {
   checkUser: {},
-  currUser: null,
+  currUser: {},
   users: [],
   error: '',
   isAuthenticated: false,

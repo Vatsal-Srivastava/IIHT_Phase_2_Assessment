@@ -15,6 +15,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
+import { CreateProductComponent } from './create-product/create-product.component';
 
 @NgModule({
   declarations: [
@@ -22,18 +24,20 @@ import { MatSelectModule } from '@angular/material/select';
     CategoryListComponent,
     ProductCardComponent,
     ProductFormComponent,
+    ConfirmDeleteComponent,
+    CreateProductComponent,
   ],
   imports: [
     CommonModule,
     ProductRoutingModule,
-    MatTabsModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatTabsModule,
     MatCardModule,
     MatGridListModule,
     MatFormFieldModule,
     MatButtonModule,
     MatDialogModule,
-    ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
   ],

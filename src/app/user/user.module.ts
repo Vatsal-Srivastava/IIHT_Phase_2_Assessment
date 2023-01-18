@@ -10,7 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { userReducer } from '../state/users/user.reducer';
 import { UserEffects } from '../state/users/user.effects';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -21,8 +21,10 @@ import { UserEffects } from '../state/users/user.effects';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forFeature('users', userReducer),
-    EffectsModule.forFeature([UserEffects])
+    EffectsModule.forFeature([UserEffects]),
   ],
   exports: [LoginComponent],
 })
