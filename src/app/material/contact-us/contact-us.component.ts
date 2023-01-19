@@ -12,6 +12,7 @@ export class ContactUsComponent implements OnInit {
   stores = ['USPA', 'Fashion Factory', 'Outpost Store', 'Wok This Way'];
   constructor(private router: Router, private fb: FormBuilder) {}
   ngOnInit(): void {
+    //Initializing form
     this.contactForm = this.fb.group({
       fname: ['', [Validators.required, Validators.minLength(3)]],
       lname: ['', [Validators.required]],
@@ -20,7 +21,9 @@ export class ContactUsComponent implements OnInit {
     });
   }
   contact() {
+    //Contact Form Submit Function
     alert('We Will Get In touch With You Soon');
+    //Route to home
     this.router.navigate(['home']);
   }
 }

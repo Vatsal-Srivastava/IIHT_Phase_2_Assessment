@@ -16,6 +16,7 @@ export class PaymentComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit(): void {
+    //Initializing the payment form
     this.paymentForm = this.fb.group({
       num: ['', [Validators.required]],
       date: ['', [Validators.required]],
@@ -25,8 +26,10 @@ export class PaymentComponent implements OnInit {
   }
 
   submitPay() {
+    //Clearing cart on successful payment
     this.cartService.clearCart();
     alert('Order Placed');
+    // and returning to home
     this.router.navigate(['home']);
   }
 }

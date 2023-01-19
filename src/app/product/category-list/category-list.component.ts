@@ -27,6 +27,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
   ele: string = '';
   products!: Product[];
   ngOnInit(): void {
+    //loading Product ngrx action
     this.store.dispatch(loadProducts());
     this.subscription = this.store
       .select(getProducts)

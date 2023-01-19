@@ -34,6 +34,7 @@ export class NavbarComponent implements OnInit, DoCheck {
     private cartService: CartService
   ) {}
 
+  //Initializing Curr User, isADmin, isAuth anf quantity
   CurrUser!: User | null;
   isAdmin: boolean = false;
   isAuth: boolean = false;
@@ -47,7 +48,10 @@ export class NavbarComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     // console.log('do check');
-    this.quan = this.cartService.getTotalItems();
+    //cheching updated number of items in cart
+    this.quan = this.cartService.items.length;
+
+    //Keeping Check of User in session
     this.CurrUser = JSON.parse(sessionStorage.getItem('curr') || 'null');
     // console.log(this.CurrUser);
 
@@ -67,10 +71,12 @@ export class NavbarComponent implements OnInit, DoCheck {
   }
 
   openDialog(): void {
+    //Opening Dialog box to create item
     const dialogRef = this.dialog.open(CreateProductComponent, {
       data: {},
     });
 
+    //Working With resut obtained when dialog box is closed
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.store.dispatch(createProduct({ product: result }));
@@ -80,15 +86,9 @@ export class NavbarComponent implements OnInit, DoCheck {
     });
   }
   // up = true;
-  category: any[] = [
-    'All Products',
-    Category.Dairy,
-    Category.Beauty,
-    Category.Tech,
-    Category.Grocery,
-    Category.Fruits,
-    Category.Veges,
-  ];
+  //CAe
+
+  //logging out by removing the user from session
   logout() {
     sessionStorage.removeItem('curr');
     this.isAdmin = false;

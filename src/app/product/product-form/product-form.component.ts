@@ -10,6 +10,11 @@ import { Category, Product } from '../product';
 })
 export class ProductFormComponent implements OnInit {
   productForm!: FormGroup;
+  id1: number;
+  name1: string;
+  price1: number;
+  category1: Category;
+  rating1: number;
   categoryList: any[] = [
     'All Products',
     Category.Dairy,
@@ -27,17 +32,20 @@ export class ProductFormComponent implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ProductFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    this.id1 = this.data.product.id;
+    this.name1 = this.data.product.name;
+    this.price1 = this.data.product.price;
+    this.category1 = this.data.product.category;
+    this.rating1 = this.data.product.rating;
+  }
   ngOnInit(): void {
     this.productForm = this.fb.group({
-      id: [this.data.product.id, [Validators.required]],
-      name: [
-        this.data.product.name,
-        [Validators.required, Validators.minLength(3)],
-      ],
-      price: [this.data.product.price, [Validators.required]],
-      category: [this.data.product.category, [Validators.required]],
-      rating: [this.data.product.rating, [Validators.required]],
+      id: [this.id1, [Validators.required]],
+      name: [this.name1, [Validators.required, Validators.minLength(3)]],
+      price: [this.price1, [Validators.required]],
+      category: [this.category1, [Validators.required]],
+      rating: [this.rating1, [Validators.required]],
     });
   }
 
