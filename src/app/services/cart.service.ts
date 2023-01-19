@@ -74,4 +74,12 @@ export class CartService {
     });
     return sum;
   }
+
+  getTotalItems() {
+    let sum = 0;
+    this.items.forEach((ele) => {
+      sum += ele.quantity;
+    });
+    return sum;
+  }
 }

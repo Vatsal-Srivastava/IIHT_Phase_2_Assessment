@@ -110,6 +110,7 @@
                     [disabled]="!cartList.length"
                     mat-raised-button
                     color="primary"
+                    (click)="checkout()"
                   >
                     Checkout
                   </button>
@@ -136,7 +137,7 @@
     <img src="../../../assets/images/ufo.gif" />
     <p class="mat-headline-4 heading">Your Cart is Empty!</p>
   </div>
-  <button [disabled]="!cartList.length" mat-raised-button color="primary">
+  <button (click)="checkout()" [disabled]="!cartList.length" mat-raised-button color="primary">
     Checkout
   </button>
   <button (click)="continue()" mat-raised-button color="accent">

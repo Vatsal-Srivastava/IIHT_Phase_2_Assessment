@@ -8,9 +8,8 @@ describe('AboutUsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AboutUsComponent ]
-    })
-    .compileComponents();
+      declarations: [AboutUsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AboutUsComponent);
     component = fixture.componentInstance;
@@ -19,5 +18,12 @@ describe('AboutUsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  //Testing title
+
+  it(`should have as title 'About Us'`, () => {
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('About Us');
   });
 });

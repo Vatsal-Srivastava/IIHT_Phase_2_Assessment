@@ -15,6 +15,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { ProductModule } from '../product/product.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
+import { PaymentComponent } from './payment/payment.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     NavbarComponent,
     AboutUsComponent,
     ContactUsComponent,
+    PaymentComponent,
   ],
   imports: [
     ProductModule,
     CommonModule,
+    ReactiveFormsModule,
     MaterialRoutingModule,
     MatToolbarModule,
     MatIconModule,

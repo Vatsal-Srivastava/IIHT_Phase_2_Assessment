@@ -18,9 +18,10 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDbMartService } from './inmemorydbmartservice';
 import { ProductEffects } from './state/products/product.effects';
 import { productReducer } from './state/products/product.reducer';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotFoundComponent],
   providers: [],
   bootstrap: [AppComponent],
   imports: [

@@ -19,6 +19,7 @@ import { createProduct } from 'src/app/state/products/product.actions';
 import { getCurrUser } from 'src/app/state/users/user.selectors';
 import { User } from 'src/app/user/user';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -29,12 +30,14 @@ export class NavbarComponent implements OnInit, DoCheck {
   constructor(
     private store: Store,
     public dialog: MatDialog,
-    public router: Router
+    public router: Router,
+    private cartService: CartService
   ) {}
 
   CurrUser!: User | null;
   isAdmin: boolean = false;
   isAuth: boolean = false;
+  quan: number = 0;
   ngOnInit(): void {
     // this.store.select(getCurrUser).subscribe((val) => {
     //   this.CurrUser = val;
@@ -44,6 +47,7 @@ export class NavbarComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     // console.log('do check');
+    this.quan = this.cartService.getTotalItems();
     this.CurrUser = JSON.parse(sessionStorage.getItem('curr') || 'null');
     // console.log(this.CurrUser);
 

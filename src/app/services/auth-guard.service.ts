@@ -13,27 +13,21 @@ import { getAuth } from '../state/users/user.selectors';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard {
   logstr = false;
-  constructor(
-    private userService: UserService,
-    private router: Router,
-    private store: Store
-  ) {
-
-    this.store.select(getAuth).subscribe((val)=>{
-      this.logstr = val;
-    })
+  constructor(private userService: UserService, private router: Router) {
+    // this.store.select(getAuth).subscribe((val)=>{
+    //   this.logstr = val;
+    // })
   }
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
+
+  canActivate(state: RouterStateSnapshot): boolean {
+    //returning checkLoggedIn function if user is Authenticated or not
     return this.checkLoggedIn(state.url);
   }
   checkLoggedIn(url: string): boolean {
-    if (this.logstr) {
-      console.log('Auth');
+    // console.log(sessionStorage.key(0));
+    if (sessionStorage.key(0)) {
       return true;
     }
 

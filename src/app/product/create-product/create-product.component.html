@@ -4,13 +4,14 @@
     <p></p>
     <mat-form-field appearance="outline">
       <mat-label>Enter Product Name</mat-label>
-      <input matInput formControlName="name" />
+      <input class="name" matInput formControlName="name" />
     </mat-form-field>
     <br />
 
     <mat-form-field appearance="outline">
       <mat-label>Enter Product Price</mat-label>
       <input
+        class="price"
         type="number"
         matInput
         autocomplete="off"
@@ -21,7 +22,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Select Category</mat-label>
-      <mat-select matInput formControlName="category">
+      <mat-select class="category" matInput formControlName="category">
         <mat-option *ngFor="let cat of categoryList" [value]="cat">
           {{ cat }}
         </mat-option>
@@ -29,12 +30,14 @@
     ><br />
     <mat-form-field appearance="outline">
       <mat-label>Enter Product Rating</mat-label>
-      <input matInput formControlName="rating" />
+      <input class="rating" matInput formControlName="rating" />
     </mat-form-field>
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">No Thanks</button>
     <button
+      class="bt"
+      [disabled]="!productForm.valid"
       mat-raised-button
       color="primary"
       (click)="create()"

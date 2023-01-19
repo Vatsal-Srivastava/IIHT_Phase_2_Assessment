@@ -19,14 +19,20 @@
       </button>
 
       <button mat-flat-button color="primary" [routerLink]="['cart']">
-        <mat-icon>shopping_cart</mat-icon>
+        <mat-icon>shopping_cart</mat-icon>{{ quan }}
       </button>
 
-      <button mat-flat-button *ngIf="CurrUser !== null" color="primary">
+      <button
+        class="bt"
+        mat-flat-button
+        *ngIf="CurrUser !== null"
+        color="primary"
+      >
         Welcome, {{ CurrUser.userName }}
       </button>
 
       <button
+      class="bt1"
         *ngIf="!isAuth"
         mat-flat-button
         color="primary"
@@ -35,7 +41,7 @@
         Login<mat-icon>login</mat-icon>
       </button>
 
-      <button *ngIf="isAuth" mat-flat-button color="primary" (click)="logout()">
+      <button class="bt2" *ngIf="isAuth" mat-flat-button color="primary" (click)="logout()">
         Logout<mat-icon>logout</mat-icon>
       </button>
     </div>

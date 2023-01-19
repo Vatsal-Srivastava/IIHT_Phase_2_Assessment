@@ -9,7 +9,9 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart-list.component.css'],
 })
 export class CartListComponent implements OnInit {
+  //Initialize total price
   total: number = 0;
+  //Initialize list of cart Item
   cartList!: ProductCart[];
   constructor(private cartService: CartService, private router: Router) {}
   ngOnInit(): void {
@@ -18,23 +20,33 @@ export class CartListComponent implements OnInit {
   }
 
   quan_Sub(c: ProductCart) {
+    //Drecrease quantity Service
     this.cartService.decrementQuantity(c);
 
+    //Updating Total
     this.total = this.cartService.getCartTotal();
   }
   quan_Add(c: ProductCart) {
+    //Increase quantity Service
     this.cartService.incrementQuantity(c);
 
+    //Updating Total
     this.total = this.cartService.getCartTotal();
   }
 
   deleteThis(id: number) {
     this.cartService.deletefromCart(id);
 
+    //Updating Total
     this.total = this.cartService.getCartTotal();
   }
 
   continue() {
+    //Continue shopping navigation to Menu
     this.router.navigate(['home']);
+  }
+  checkout() {
+    //CheckOut navigation to payment page
+    this.router.navigate(['payment']);
   }
 }

@@ -14,8 +14,9 @@ import { getProducts } from 'src/app/state/products/product.selectors';
 })
 export class CreateProductComponent implements OnInit {
   productForm!: FormGroup;
-  productList!: Product[];
+  productList: Product[] = [];
   subs!: Subscription;
+  len: number = 0;
   categoryList: any[] = [
     Category.Dairy,
     Category.Beauty,
@@ -39,12 +40,10 @@ export class CreateProductComponent implements OnInit {
     this.subs = this.store.select(getProducts).subscribe((val) => {
       console.log(val);
       this.productList = val;
+      this.len = this.productList[val.length - 1].id;
     });
     this.productForm = this.fb.group({
-      id: [
-        this.productList[this.productList.length - 1].id + 1,
-        [Validators.required],
-      ],
+      id: [this.len + 1, [Validators.required]],
       name: ['', [Validators.required, Validators.minLength(3)]],
       price: ['', [Validators.required]],
       category: ['', [Validators.required]],

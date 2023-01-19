@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './material/home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -24,6 +25,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./material/material.module').then((m) => m.MaterialModule),
   },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

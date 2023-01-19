@@ -39,7 +39,7 @@ import { CreateProductComponent } from './create-product/create-product.componen
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
-    MatSelectModule,
+    MatSelectModule,  
   ],
   exports: [ProductListComponent, CategoryListComponent],
 })

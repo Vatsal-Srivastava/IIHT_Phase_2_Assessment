@@ -1,0 +1,60 @@
+<form [formGroup]="paymentForm">
+  <div class="contact-body">
+    <div class="form-sty">
+      <p class="mat-headline-4 heading">Process Payment</p>
+
+      <p>
+        <button color="accent" mat-raised-button>Apply Coupons</button>
+      </p>
+      <p>
+        <button color="accent" mat-raised-button>Pay With Netbanking</button>
+      </p>
+
+      <div class="flex-form">
+        <div>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Card Number</mat-label>
+              <input formControlName="num" matInput placeholder="###-###-###" />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Expiry Date</mat-label>
+              <input formControlName="date" matInput placeholder="DD-MM-YY" />
+            </mat-form-field>
+          </p>
+        </div>
+        <div>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>CVV</mat-label>
+              <input formControlName="cvv" matInput placeholder="xxx" />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Card Holder Name</mat-label>
+              <input
+                formControlName="name"
+                matInput
+                placeholder="Enter Your Name"
+              />
+            </mat-form-field>
+          </p>
+        </div>
+      </div>
+
+      <p>
+        <button
+          [disabled]="!paymentForm.valid"
+          (click)="submitPay()"
+          color="primary"
+          mat-raised-button
+        >
+          Submit
+        </button>
+      </p>
+    </div>
+  </div>
+</form>

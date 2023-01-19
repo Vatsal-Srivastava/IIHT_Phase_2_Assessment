@@ -4,7 +4,13 @@
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Enter Username</mat-label>
-        <input formControlName="name" matInput placeholder="username" />
+        <input
+          type="text"
+          class="name"
+          formControlName="name"
+          matInput
+          placeholder="username"
+        />
         <mat-icon matSuffix>person</mat-icon>
       </mat-form-field>
     </p>
@@ -12,7 +18,9 @@
       <mat-form-field appearance="outline">
         <mat-label>Enter your password</mat-label>
         <input
+          class="password"
           formControlName="password"
+          placeholder="password"
           matInput
           [type]="hide ? 'password' : 'text'"
         />
@@ -29,6 +37,7 @@
     </p>
     <p>
       <button
+        class="bt"
         mat-raised-button
         type="button"
         [disabled]="!loginForm.valid"

@@ -10,7 +10,12 @@ import { NavbarComponent } from './material/navbar/navbar.component';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, MaterialModule, BrowserAnimationsModule, BrowserModule],
+      imports: [
+        RouterTestingModule,
+        MaterialModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+      ],
       declarations: [AppComponent, NavbarComponent],
       providers: [provideMockStore({})],
     }).compileComponents();
@@ -28,12 +33,9 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('InstaSmart');
   });
 
-  it('should render title', () => {
+  it('should check is navBar is rendering or not', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'InstaSmart app is running!'
-    );
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('app-navbar')).toBeTruthy();
   });
 });
