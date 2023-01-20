@@ -79,7 +79,6 @@ export class ProductCardComponent implements DoCheck {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ProductFormComponent, {
-      width: '50%',
       data: {
         product: this.product,
       },
